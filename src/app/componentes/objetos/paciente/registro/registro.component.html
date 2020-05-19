@@ -1,0 +1,101 @@
+<form #registroPaciente="ngForm" (ngSubmit)="onSubmit();" class="m-5">
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <!--Nombre-->
+            <div class="form-group">
+                <label for="nombre"><span>*</span> Nombre(s): </label>
+                <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="paciente.nombre" #nombre="ngModel" required>
+            </div><!--End Nombre-->
+
+            <!--Apellido Paterno-->
+            <div class="form-group">
+                <label for="apellidoP"><span>*</span> Apellido Paterno:</label>
+                <input type="text" name="apellidoP" class="form-control" id="apellidoP" [(ngModel)]="paciente.apellidoP" #apellidoP="ngModel" required>
+            </div><!--End Apellido Paterno-->
+
+            <!--Apellido Materno-->
+            <div class="form-group">
+                <label for="apellidoM"><span>*</span>Apellido Materno:</label>
+                <input type="text" name="apellidoM" class="form-control" id="apellidoM" [(ngModel)]="paciente.apellidoM" #apellidoM="ngModel" required>
+            </div><!--End Apellido Materno-->
+
+              <!--Edad-->
+              <div class="form-group">
+                <label for="edad"><span>*</span> Edad: </label>
+                <input type="text" name="edad" class="form-control" id="edad" [(ngModel)]="paciente.edad" #edad="ngModel" required>
+            </div><!--End edad-->
+
+        </div><!--End Col-4-->
+
+        <div class="col-md-4">
+
+             <!--Genero-->
+             <div class="form-group">
+                <label for="genero"><span>*</span>Genero:</label>
+                <select  name="genero" [(ngModel)]="genero" class="form-control" required>
+                    <option *ngFor="let g of generos" [ngValue]="g" >{{g.etiqueta}}</option>
+                 </select>
+            </div><!--End Genero-->
+
+
+            <!-- <mat-form-field>
+                <mat-label>Selecciona un Genero</mat-label>
+                <mat-select name="genero" [(ngModel)]="genero" class="form-control" required disableRipple>
+                  <mat-option  *ngFor="let g of generos" [value]="g">{{g.etiqueta}}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
+            <!--[(value)="idGeneroSeleccionado"]-->
+            <!--*ngFor="let p of generos" [value]="p.id"-->
+
+            <!--CURP-->
+            <div class="form-group">
+                <label for="curp"><span>*</span>Curp:</label>
+                <input type="text" name="curp" class="form-control" id="curp" [(ngModel)]="paciente.curp" #curp="ngModel" required required minlength="18" maxlength="21">
+            </div><!--End CURP-->
+
+            <!--Estado Civil-->
+             <div class="form-group">
+                <label for="estadoCivil"><span>*</span>Estado Civil:</label>
+                <select  name="estadoCivil" [(ngModel)]="estadoCivil" class="form-control" required>
+                   <option *ngFor="let ec of estadosCiviles" [ngValue]="ec" >{{ec.etiqueta}}</option>
+               </select>
+           </div><!--End Estado Civil-->
+
+
+        </div><!--End Col-4-->
+
+        <div class="col-md-4">
+
+
+            <!--Teléfono Celular-->
+            <div class="form-group">
+                <label for="telefonoCelular"><span>*</span>Teléfono Celular:</label>
+                <input type="text" name="telefonoCelular" class="form-control" id="telefonoCelular" [(ngModel)]="paciente.telefonoCelular" #curp="ngModel" required required minlength="18" maxlength="21">
+            </div><!--End Teléfono telefonoCelular-->
+
+             <!--Teléfono-->
+             <div class="form-group">
+                <label for="telefono"><span>*</span>Teléfono:</label>
+                <input type="text" name="telefono" class="form-control" id="telefono" [(ngModel)]="paciente.telefono" #curp="ngModel" required required minlength="18" maxlength="21">
+            </div><!--End Teléfono-->
+
+             <!--Correo Electrónico-->
+             <div class="form-group">
+                <label for="correo"><span>*</span>Correo Electrónico:</label>
+                <input type="email" name="correo" class="form-control" id="correo" [(ngModel)]="paciente.correo" #correo="ngModel" required>
+            </div><!--End Correo Electrónico-->
+
+        </div><!--End Col-4-->
+    </div><!--End Row-->
+<hr>
+<br>
+<h2>Dirección</h2>
+<br>
+    <app-direccion [pacienteDesdePaciente]="paciente"></app-direccion>
+    
+    <button mat-button color="primary" type="submit" >Guardar</button>
+
+  </form>

@@ -9,19 +9,26 @@ import { Paciente } from 'src/app/models/paciente/paciente.module';
   providedIn: 'root'
 })
 export class PacienteService {
-public ulrMaster:String;
+public urlMaster:String;
   constructor(
     public http : HttpClient
   ) {
-    this.ulrMaster='localhost:8090';
+    this.urlMaster='http://localhost:8090/';
    }
 
-   registrarPaciente(paciente){
-     let json =paciente;
-     console.log(paciente);
-     let parametros = 'json='+json;
+   registrarPaciente(paciente):Observable<any>{
      let header= new HttpHeaders().set('Content-Type', 'application/json');
-     return this.http.post('http://localhost:8090/pacientes/nuevo',paciente,{headers:header});
-
+     return this.http.post(this.urlMaster+'pacientes/nuevo',paciente,{headers:header});
    }
+
+   getAllGenero():Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+'generos/genero');
+  }
+
+  getAllEstadoCivil():Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+'estadosciviles/estadocivil');
+
+  }
 }

@@ -4,6 +4,7 @@ import { PacienteService } from 'src/app/servicios/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Genero } from 'src/app/models/genero/genero.module';
 import { EstadoCivil } from 'src/app/models/estadocivil/estadocivil.module';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-paciente',
@@ -24,7 +25,7 @@ export class PacienteComponent implements OnInit {
   ) { 
     this.genero = new Genero(1,'Masculino');
     this.estadoCivil = new EstadoCivil(1,'Soltero/a');
-    this.paciente = new Paciente (6,'3Gil','Colin','Velasco',27,'colin@gmail.com','QAWSEDRFTGYH123456',99999999,55245678,this.genero,this.estadoCivil);
+    //this.paciente = new Paciente (7,'3Gil','Colin','Velasco',27,'colin@gmail.com','QAWSEDRFTGYH123456',99999999,55245678,this.genero,this.estadoCivil,new Date());
   }
 
   ngOnInit(): void {

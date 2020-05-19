@@ -25,6 +25,43 @@ INSERT INTO Paciente (apellido_p,apellido_m,correo,curp,edad,fecha_alta,nombre,t
         "apellidoP": "Gonzales"
     }
 
+    {
+        "id":2,
+        "nombre": "Perla",
+        "apellidoM": "Rosas",
+        "edad":65,
+         "genero": {
+            "id": 1,
+            "etiqueta": "Masculino"
+        },
+        "estadoCivil": {
+            "id": 2,
+            "etiqueta": "Casado/a"
+        },
+        "curp": "PVHA900211HDFRL08",
+        "correo": "strong@gmail.com",
+        "telefono": 64555555,
+        "telefonoCelular": 1234583647,
+        "estatus": false,
+        "fechaAlta": "2019-10-10 22:16:16",
+        "apellidoP": "Gonzales",
+        "direccion":{
+          "entidadFederativa":{
+             "id":1,
+          "etiqueta":"Ciudad de Mexico"
+          },
+          "alcaldiaMunicipio":{
+            "id":1,
+            "etiqueta":"Iztapalapa"
+          },
+          "colonia":"Lomas de Zaragoza",
+          "codigoPostal":12345,
+          "calle":"Patricia",
+          "numeroExterior":"2",
+          "numeroInterior":"1"
+        }
+    }
+
 --==== DOCTOR ====--
 --================--
 INSERT INTO Doctor (apellidos,nombre,id_area,id_especialidad) VALUES ('Limón','Luis',1,1);

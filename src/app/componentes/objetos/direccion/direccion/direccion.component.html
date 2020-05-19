@@ -1,0 +1,63 @@
+
+    <div class="row">
+        <div class="col-md-4">
+            
+            <!--Entidad Federativa-->
+            <div class="form-group">
+                <label for="entidadFederativa"><span>*</span>Entidad Federativa:</label>
+                <select  name="entidadFederativa" [(ngModel)]="entidadFederativa" class="form-control" required>
+                <option *ngFor="let entidadF of entidadesFederativas" [ngValue]="entidadF" >{{entidadF.etiqueta}}</option>
+            </select>
+            </div><!--End Entidad Federativa-->
+
+            <!--Alcaldia/Municipio-->
+            <div class="form-group">
+                <label for="alcaldia"><span>*</span>Alcaldía/Municipio:</label>
+                <select  name="alcaldia" [(ngModel)]="alcaldia" class="form-control" required>
+                <option *ngFor="let al of alcaldias" [ngValue]="al" >{{al.etiqueta}}</option>
+            </select>
+            </div><!--End Alcaldia/Municipio-->
+
+            <!--Colonia-->
+            <div class="form-group">
+                <label for="colonia"><span>*</span>Colonia: </label>
+                <input type="text" name="colonia" class="form-control" id="colonia" [(ngModel)]="direccion.colonia" #colonia="ngModel" required>
+            </div><!--End Colonia-->
+    
+        </div><!--End Col-4-->
+
+        <div class="col-md-4">
+
+            <!--Codigo Postal-->
+            <div class="form-group">
+                <label for="codigoPostal"><span>*</span>Código Postal: </label>
+                <input type="text" name="codigoPostal" class="form-control" id="codigoPostal" [(ngModel)]="direccion.codigoPostal" #codigoPostal="ngModel" required>
+            </div><!--End Codigo Postal-->
+
+            <!--Calle-->
+            <div class="form-group">
+                <label for="calle"><span>*</span>Calle:</label>
+                <input type="text" name="calle" class="form-control" id="calle" [(ngModel)]="direccion.calle" #calle="ngModel" required>
+            </div><!--End Calle-->
+
+        </div><!--End Col-4-->
+
+        <div class="col-md-4">
+
+            <!--Numero Exterior-->
+            <div class="form-group">
+                <label for="numeroExterior"><span>*</span># Exterior:</label>
+                <input type="text" name="numeroExterior" class="form-control" id="numeroExterior" [(ngModel)]="direccion.numeroExterior" #numeroExterior="ngModel" required required minlength="18" maxlength="21">
+            </div><!--End Numero Exterior-->
+
+            <!--Numero Interior-->
+            <div class="form-group">
+                <label for="numeroInterior"><span>*</span># Interior:</label>
+                <input type="text" name="numeroInterior" class="form-control" id="numeroInterior" [(ngModel)]="direccion.numeroInterior" #numeroInterior="ngModel" required>
+            </div><!--End Numero Interior-->
+
+        </div><!--End Col-4-->
+    </div><!--End Row-->
+    
+   
+
