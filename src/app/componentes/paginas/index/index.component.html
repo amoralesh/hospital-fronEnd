@@ -1,8 +1,26 @@
-<html>
-	<head>
-		<title>Mi página de ejemplo</title>
-	</head>
-	<body>
-	Aquí va el contenido
-	</body>
-</html>
+<!-- <div mk-morris-js [options]="chartAreaOptions" [data]="chartAreaData" type="Area"></div>
+<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>
+<div mk-morris-js [options]="chartDonutOptions" [data]="chartDonutData" type="Donut"></div>
+ -->
+
+ <div>
+	<div>
+	  <div class="chart">
+		<canvas baseChart
+		  [data]="pieChartData"
+		  [labels]="pieChartLabels"
+		  [chartType]="pieChartType"
+		  [options]="pieChartOptions"
+		
+		  [colors]="pieChartColors"
+		  [legend]="pieChartLegend">
+		</canvas>
+	  </div>
+	</div>
+  </div>
+  <div>
+	<button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
+	<button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
+	<button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
+	<button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+  </div>

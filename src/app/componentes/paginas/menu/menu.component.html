@@ -5,23 +5,28 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
+            <p>Menú</p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Home 1</a>
+                        <a [routerLink]="['paciente','lista']">Lista de Pacientes</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['paciente','nuevo']">Nuevo</a>
                     </li>
                     <li>
                         <a href="#">Home 2</a>
                     </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
                 </ul>
             </li>
-            <li>
-                <a href="#">About</a>
+            <li >
+                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Doctores</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu2">
+                    <li>
+                        <a href="#">Lista de Doctores</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
@@ -39,9 +44,6 @@
             </li>
             <li>
                 <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
             </li>
         </ul>
 

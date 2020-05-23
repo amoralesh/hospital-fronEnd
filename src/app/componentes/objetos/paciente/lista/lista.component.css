@@ -1,0 +1,25 @@
+.fa-edit{
+    color: blue;
+    margin-left:5%;
+
+}
+
+.fa-trash-alt{
+    color: red;
+    margin-left:10%;
+}
+
+table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 19px;
+    width: 50%;
+  }
+
+  .mat-raised-button {
+    margin-left: 31%;
+  }
+
+ 

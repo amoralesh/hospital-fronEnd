@@ -16,10 +16,6 @@ public urlMaster:String;
     this.urlMaster='http://localhost:8090/';
    }
 
-   registrarPaciente(paciente):Observable<any>{
-     let header= new HttpHeaders().set('Content-Type', 'application/json');
-     return this.http.post(this.urlMaster+'pacientes/nuevo',paciente,{headers:header});
-   }
 
    getAllGenero():Observable<any>{
     //let header= new HttpHeaders().set('Content-Type', 'application/json');
@@ -31,4 +27,37 @@ public urlMaster:String;
     return this.http.get(this.urlMaster+'estadosciviles/estadocivil');
 
   }
+
+  getAllPacientes():Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+'pacientes/paciente');
+  }
+
+  getPacientesId(id):Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+`pacientes/paciente/${id}`);
+  }
+
+  registrarPaciente(paciente):Observable<any>{
+    let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.urlMaster+'pacientes/nuevo',paciente,{headers:header});
+  }
+
+  actualizarPaciente(paciente):Observable<any>{
+    let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put(this.urlMaster+'pacientes/editar',paciente,{headers:header});
+  }
+
+  eliminarPaciente(id):Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.delete(this.urlMaster+`pacientes/eliminar/${id}`);
+  }
+
+  getCountGenero():Observable<any>{
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+'pacientes/countGenero');
+  }
+
+  
+
 }

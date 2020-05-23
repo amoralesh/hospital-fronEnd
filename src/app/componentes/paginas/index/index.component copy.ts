@@ -39,16 +39,9 @@ export class IndexComponent implements OnInit {
         this.cadenaGeneros=[resultado[0].split(",",2),resultado[1].split(",",2)];
         //console.log(this.cadenaGeneros[0][1]);
         this.cantidad=parseInt(this.cadenaGeneros[0][1],10);
-        console.log( this.cadenaGeneros);
-        this.funcionAuxiliar();
+        console.log( this.cantidad);
       });/*FIN DE SERVICIO */
-
-  
-  }/*FIN ngOnInit*/
-
-public funcionAuxiliar(){
-
-  
+        
   this.pieChartOptions = {
     responsive: true,
     legend: {
@@ -64,8 +57,8 @@ public funcionAuxiliar(){
     }
   };
 
-   this.pieChartLabels= [this.cadenaGeneros[0][0], this.cadenaGeneros[1][0], 'Otros'];
-  this.pieChartData = [ this.cadenaGeneros[0][1], this.cadenaGeneros[1][1], 2];
+   this.pieChartLabels= ['Download', 'Sales', 'Mail Sales'];
+  this.pieChartData = [ this.cantidad, 500, 100];
   this.pieChartType= 'pie';
   this.pieChartLegend = true;
   
@@ -76,8 +69,57 @@ public funcionAuxiliar(){
   ];
 
 
-}
+   
+    // this.chartAreaOptions = {
+    //   xkey: 'y',
+    //   ykeys: ['a', 'b'],
+    //   labels: ['Series A', 'Series B'],
+    //   resize: true
+    // };
+    
+    // this.chartAreaData =  [
+    //   { y: '2006', a: 100, b: 90 },
+    //   { y: '2007', a: 75,  b: 65 },
+    //   { y: '2008', a: 50,  b: 40 },
+    //   { y: '2009', a: 75,  b: 65 },
+    //   { y: '2010', a: 50,  b: 40 },
+    //   { y: '2011', a: 75,  b: 65 },
+    //   { y: '2012', a: 100, b: 90 }
+    // ];
 
+    //   this.chartBarOptions = {
+    //   xkey: 'y',
+    //   ykeys: ['a', 'b'],
+    //   labels: ['Series A', 'Series B'],
+    //   resize: true
+    // };
+    
+    //   this.chartBarData =  [
+    //   { y: '2006', a: 100, b: 90 },
+    //   { y: '2007', a: 75,  b: 65 },
+    //   { y: '2008', a: 50,  b: 40 },
+    //   { y: '2009', a: 75,  b: 65 },
+    //   { y: '2010', a: 50,  b: 40 },
+    //   { y: '2011', a: 75,  b: 65 },
+    //   { y: '2012', a: 100, b: 90 }
+    // ];
+
+    // this.chartDonutOptions = {
+    //   resize: true,
+    //   colors: [
+    //     '#0BA462',
+    //     '#39B580',
+    //     '#67C69D'
+    //   ]
+    // };
+    
+    // this.chartDonutData =  [
+    //   {label: "Mujeres", value:45},
+    //   {label: "Hombre", value: 30 },
+    //   {label: "Otros", value: 20}
+    // ];
+    
+  }/*FIN ngOnInit*/
    // events
    public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);

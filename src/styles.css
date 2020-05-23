@@ -29,7 +29,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -150,7 +150,11 @@ a.article:hover {
 
 #content {
     width: calc(100% - 250px);
-    padding: 40px;
+    padding-top: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 40px;
+
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;

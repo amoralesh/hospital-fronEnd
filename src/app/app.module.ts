@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PacienteComponent } from './componentes/objetos/paciente/paciente.component';
@@ -14,6 +13,14 @@ import { CabeceraComponent } from './componentes/paginas/cabecera/cabecera.compo
 import { DireccionComponent } from './componentes/objetos/direccion/direccion/direccion.component';
 import { EntidadfederativaComponent } from './componentes/objetos/direccion/entidadfederativa/entidadfederativa.component';
 import { MaterialModule } from './material/material.module';
+import { ListaComponent } from './componentes/objetos/paciente/lista/lista.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { RouterModule } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MorrisJsModule } from 'angular-morris-js';
+
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +31,8 @@ import { MaterialModule } from './material/material.module';
     MenuComponent,
     CabeceraComponent,
     DireccionComponent,
-    EntidadfederativaComponent
+    EntidadfederativaComponent,
+    ListaComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +40,14 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule                        
+    MaterialModule,
+    NgxSpinnerModule,
+    RouterModule,
+    SweetAlert2Module,
+    MorrisJsModule,
+    ChartsModule            
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,72 @@
+<nb-card-body class="card-body">
+  <ngx-spinner type="square-jelly-box" size="medium"></ngx-spinner>
+</nb-card-body>
+
+<div class="row">
+  <div class="col-md-12">
+
+<mat-form-field id="buscar">
+  <mat-label><i class="fas fa-search"></i> Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..."> 
+</mat-form-field>
+
+<button mat-raised-button color="primary" routerLink="/paciente/nuevo" >Nuevo Paciente</button>
+
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="posicion">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="apellidoP">
+      <th mat-header-cell *matHeaderCellDef>Apellido P.</th>
+      <td mat-cell *matCellDef="let element"> {{element.apellidoP}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="apellidoM">
+      <th mat-header-cell *matHeaderCellDef>Apellido M.</th>
+      <td mat-cell *matCellDef="let element"> {{element.apellidoM}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="telefonoCelular">
+      <th mat-header-cell *matHeaderCellDef>Teléfono Celular</th>
+      <td mat-cell *matCellDef="let element"> {{element.telefonoCelular}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+      <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+    </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <a routerLink="/paciente/editar/{{element.id}}"><i class="fas fa-edit"></i></a>
+          <a (click)="eliminar(element.id)"><i class="fas fa-trash-alt"></i></a>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+</div>
+
+</div>
+

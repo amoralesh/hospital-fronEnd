@@ -1,0 +1,53 @@
+<nb-card-body class="card-body">
+    <ngx-spinner type="square-jelly-box" size="medium"></ngx-spinner>
+</nb-card-body>
+
+<div class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="posicion">
+      <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="apellidoP">
+      <mat-header-cell *matHeaderCellDef>Apellido P.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.apellidoP}} </mat-cell>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="apellidoM">
+      <mat-header-cell *matHeaderCellDef>Apellido M. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="telefonoCelular">
+        <mat-header-cell *matHeaderCellDef>Teléfono Celular M. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.telefonoCelular}} </mat-cell>
+      </ng-container>
+
+       <!-- Symbol Column -->
+     <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a href="#"><i class="fas fa-edit"></i></a>
+          <a href="#"><i class="fas fa-trash-alt"></i></a>
+            <!-- <button class="btn btn-primary">Actualizar</button>
+            <button class="btn btn-danger">Eliminar</button> -->
+        </mat-cell>
+      </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

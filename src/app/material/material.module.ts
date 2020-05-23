@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -11,11 +14,17 @@ import { MatSelectModule } from '@angular/material/select';
          CommonModule,
          BrowserAnimationsModule,
          MatButtonModule,
-         MatSelectModule
+         MatSelectModule,
+         MatTableModule,
+         MatPaginatorModule,
+         MatInputModule
         ],
     exports: [ 
         MatButtonModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatInputModule
     ],
     providers: [],
 })
