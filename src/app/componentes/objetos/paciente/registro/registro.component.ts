@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
 import { Genero } from 'src/app/models/genero/genero.module';
 import { Paciente } from 'src/app/models/paciente/paciente.module';
 import { EstadoCivil } from 'src/app/models/estadocivil/estadocivil.module';
@@ -10,13 +8,22 @@ import { Direccion } from 'src/app/models/direccion/direccion.module';
 import { Entidadfederativa } from './../../../../models/entidadfederativa/entidadfederativa.module';
 import { Alcaldia } from 'src/app/models/alcaldia/alcaldia.module';
 import { DireccionService } from 'src/app/servicios/direccion.service';
+import { MessageService } from 'primeng/api';
+import { DateAdapter } from '@angular/material/core';
+
+
+
+
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  providers: [MessageService]
+
 })
 export class RegistroComponent implements OnInit {
+
 
   public paciente:Paciente;
   public genero:Genero;
@@ -31,9 +38,19 @@ export class RegistroComponent implements OnInit {
 
   public entidadesFederativas;
   public alcaldias;
+ //para cambiar el idioma del datapicket a español
+  es: any;
+  locale: string;
+
+  public uploadedFiles;
 
   id:number;
   edicion:boolean=false;
+
+  uplo: File;
+
+  public file;
+  public uploadImageData;
 
 
 
@@ -41,33 +58,41 @@ export class RegistroComponent implements OnInit {
     private servicioPaciente:PacienteService,
     private servicioDireccion:DireccionService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    //para mostrar el mensaje del toast
+    private messageService: MessageService,
+    //para cambiar el idioma del datapicket a español
+    private dateAdapter: DateAdapter<Date>
+   
     
   ) {
+
+    //para cambiar el idioma del datapicket a español
+    this.locale = 'es';
+    this.dateAdapter.setLocale('es');
+
     this.genero = new Genero(2,'Femenino');
     this.estadoCivil = new EstadoCivil(1,'Soltero/a');
    
     this.entidadFederativa= new Entidadfederativa(1,'algo');
     this.alcaldia  = new Alcaldia (1,'algo');
     this.direccion = new Direccion (this.entidadFederativa,this.alcaldia,'',null,'','','');
-    this.paciente  = new Paciente (60000,'','','',null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date());
+    this.paciente  = new Paciente (60000,'','','',null,null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date());
 
   }
-
+  
   ngOnInit(): void {
 
-    console.log(this.genero);
          this.route.params.subscribe((params:Params) =>{
-              this.id=params['id'];
-              this.edicion = this.id!=null;
-          });
+         this.id=params['id'];
+         this.edicion = this.id!=null;
+          
 
       if(this.edicion){
           /*Servicio que obtiene la lista de todos los pacientes */
           this.servicioPaciente.getPacientesId(this.id).subscribe(resultado=>{
             this.paciente= resultado;
             this.direccion= this.paciente.direccion;
-            console.log(this.paciente.genero);
           });
           /*FIN*/
       }
@@ -115,12 +140,16 @@ export class RegistroComponent implements OnInit {
       }
     );
     /*FIN*/
+
+  });//FIN DE EDICION/NUEVO
   }
+
+
 
   onSubmit(){
     this.paciente.genero=this.genero;
     this.paciente.estadoCivil=this.estadoCivil;
-    this.paciente.fechaAlta=new Date();
+   // this.paciente.fechaAlta=new Date();
 
     this.direccion.entidadFederativa= this.entidadFederativa;
     this.direccion.alcaldiaMunicipio = this.alcaldia;
@@ -135,7 +164,7 @@ export class RegistroComponent implements OnInit {
      /* Servicio que registra a un nuevo Paciente*/
      this.servicioPaciente.actualizarPaciente(this.paciente).subscribe(
       respuesta =>{
-        console.log(  respuesta);
+        console.log( respuesta);
       },
       error=>{
         console.log(<any>error);
@@ -144,23 +173,52 @@ export class RegistroComponent implements OnInit {
     /*FIN*/
     }else{
     //Crear
-     
+    
+   
      /* Servicio que registra a un nuevo Paciente*/
-     console.log(this.paciente);
-     this.servicioPaciente.registrarPaciente(this.paciente).subscribe(
-      respuesta =>{
-        console.log(  respuesta);
-      },
-      error=>{
-        console.log(<any>error);
-      }
-    );
+    //  console.log(this.paciente);
+    //  this.servicioPaciente.registrarPaciente(this.paciente).subscribe(
+    //   respuesta =>{
+    //     console.log(  respuesta);
+    //     this.showSuccess();
+    //     setTimeout(() => {
+    //       this.router.navigate(['paciente','editar',respuesta.id]);
+    //     }, 2000);
+    //   },
+    //   error=>{
+    //     console.log(<any>error);
+    //   }
+    // );
     /*FIN*/
     }
   
- 
+
+  }/*FIN DE onSubmit */
+
+  onUpload(event) {
+    for ( this.file of event.files) {
+      this.uplo = this.file;
+      console.log(this.file);
+    }
+
+     this.uploadImageData = new FormData();
+    this.uploadImageData.append('miArchivo', this.file, this.file.name);
+    console.log(this.uploadImageData);
+    this.uploadFileToActivity();
+  }
+
+  uploadFileToActivity() {
+    this.servicioPaciente.postFile(this.uploadImageData).subscribe(data => {
+      alert('Success');
+    }, error => {
+      console.log(error);
+    });
   }
 
 
+  /*METODO PARA MOSTRAR EL TOAST DE PRIMENG */
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'El Paciente: '+this.paciente.nombre+' '+this.paciente.apellidoP, detail:'Fue registrado con exito',life:5000});
+}//FIN
 
 }

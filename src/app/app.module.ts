@@ -1,4 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'primeng/accordion'; 
+
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
@@ -19,7 +22,14 @@ import { RouterModule } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MorrisJsModule } from 'angular-morris-js';
 
+
 import { ChartsModule } from 'ng2-charts';
+import { PrimerNGModule } from './primerng/primerng.module';
+
+
+
+
+
 
 
 @NgModule({
@@ -32,7 +42,7 @@ import { ChartsModule } from 'ng2-charts';
     CabeceraComponent,
     DireccionComponent,
     EntidadfederativaComponent,
-    ListaComponent
+    ListaComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,11 +51,14 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    PrimerNGModule,
     NgxSpinnerModule,
     RouterModule,
     SweetAlert2Module,
     MorrisJsModule,
-    ChartsModule            
+    ChartsModule,
+    BrowserAnimationsModule,
+    AccordionModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

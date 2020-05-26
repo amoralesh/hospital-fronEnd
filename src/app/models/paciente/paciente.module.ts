@@ -19,6 +19,7 @@ export class Paciente {
     public apellidoP:String,
     public apellidoM:String,
     public edad:Number,
+    public fechaNacimiento:Date,
     public correo:String,
     public curp:String,
     public telefono:Number,
