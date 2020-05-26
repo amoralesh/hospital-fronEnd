@@ -203,7 +203,9 @@
     </div>
 </div>
 
+<a (click)="cargarImagen()"><i class="fas fa-trash-alt"></i></a>
 
+<img [src]="'data:image/jpg;base64,'+base64" style="height:50px;width:50px" />
     <!--[disable]="registroPaciente.invalid"-->
 
   </form>

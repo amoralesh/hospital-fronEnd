@@ -10,6 +10,7 @@ import { Alcaldia } from 'src/app/models/alcaldia/alcaldia.module';
 import { DireccionService } from 'src/app/servicios/direccion.service';
 import { MessageService } from 'primeng/api';
 import { DateAdapter } from '@angular/material/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -52,6 +53,10 @@ export class RegistroComponent implements OnInit {
   public file;
   public uploadImageData;
 
+  public base64;
+
+
+
 
 
   constructor(
@@ -62,7 +67,9 @@ export class RegistroComponent implements OnInit {
     //para mostrar el mensaje del toast
     private messageService: MessageService,
     //para cambiar el idioma del datapicket a español
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    //Esto es para recuperar base64 img
+    private domSanitizer: DomSanitizer
    
     
   ) {
@@ -201,9 +208,8 @@ export class RegistroComponent implements OnInit {
       console.log(this.file);
     }
 
-     this.uploadImageData = new FormData();
+    this.uploadImageData = new FormData();
     this.uploadImageData.append('miArchivo', this.file, this.file.name);
-    console.log(this.uploadImageData);
     this.uploadFileToActivity();
   }
 
@@ -220,5 +226,20 @@ export class RegistroComponent implements OnInit {
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'El Paciente: '+this.paciente.nombre+' '+this.paciente.apellidoP, detail:'Fue registrado con exito',life:5000});
 }//FIN
+
+//CARGAR IMAGEN 
+
+cargarImagen(){
+
+  this.servicioPaciente.getImagenId(1).subscribe(
+    respuesta =>{
+      this.base64=respuesta.imagenByte;
+      //console.log( respuesta.imagenByte);
+    },
+    error=>{
+      console.log(<any>error);
+    }
+  );
+}
 
 }

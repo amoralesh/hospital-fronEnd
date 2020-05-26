@@ -64,6 +64,12 @@ public urlMaster:String;
     return this.http.post(this.urlMaster+'imagen/nueva',uploadImageData);
   }
 
+  getImagenId(id):Observable<any>{
+
+    //let header= new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.urlMaster+`imagen/get/${id}`);
+  }
+
   
   
 
