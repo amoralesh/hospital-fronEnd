@@ -65,9 +65,8 @@ public urlMaster:String;
   }
 
   getImagenId(id):Observable<any>{
-
     //let header= new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.get(this.urlMaster+`imagen/get/${id}`);
+    return this.http.get(this.urlMaster+`imagen/imagen/${id}`);
   }
 
   

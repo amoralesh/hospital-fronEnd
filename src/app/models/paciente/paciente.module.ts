@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Genero } from '../genero/genero.module';
 import { EstadoCivil } from '../estadocivil/estadocivil.module';
 import { Direccion } from '../direccion/direccion.module';
+import { ImagenUsuario } from '../imagenUsuario/imagenusuario.module';
 
 
 
@@ -27,7 +28,8 @@ export class Paciente {
     public genero:Genero,
     public estadoCivil:EstadoCivil,
     public direccion:Direccion,
-    public fechaAlta:Date
+    public fechaAlta:Date,
+    public imagenUsuario:ImagenUsuario
    
   ){
 
