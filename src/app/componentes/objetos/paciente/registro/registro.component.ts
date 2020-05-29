@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Genero } from 'src/app/models/genero/genero.module';
 import { Paciente } from 'src/app/models/paciente/paciente.module';
 import { EstadoCivil } from 'src/app/models/estadocivil/estadocivil.module';
@@ -11,6 +11,7 @@ import { DireccionService } from 'src/app/servicios/direccion.service';
 import { MessageService } from 'primeng/api';
 import { DateAdapter } from '@angular/material/core';
 import { ImagenUsuario } from 'src/app/models/imagenUsuario/imagenusuario.module';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-registro',
@@ -65,7 +66,8 @@ export class RegistroComponent implements OnInit {
     //para mostrar el mensaje del toast
     private messageService: MessageService,
     //para cambiar el idioma del datapicket a español
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private spinner: NgxSpinnerService
    
     
   ) {
@@ -83,9 +85,13 @@ export class RegistroComponent implements OnInit {
     this.paciente  = new Paciente (60000,'','','',null,null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date(),this.imagenUsuario);
 
   }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+   console.log(changes);
+  }
   
   ngOnInit(): void {
-
     //ESTE SERVICIO SE REALIZA PARA CONOCER SI LA URL CONTIENE ID, PARA SABER SI SE MUESTRAN DATOS 
     //PARA LA EDICION DEL PACIENTE O SE MANDA EL PACIENTE DE FAULT PARA SU CREACIÓN
          this.route.params.subscribe((params:Params) =>{
@@ -99,7 +105,7 @@ export class RegistroComponent implements OnInit {
           this.servicioPaciente.getPacientesId(this.idUrlEditar).subscribe(resultado=>{
           this.paciente= resultado;
           this.direccion= this.paciente.direccion;
-          this.base64 = atob(this.paciente.imagenUsuario.imagenByte as string); 
+          this.base64 = atob(this.paciente.imagenUsuario.imagenByte as string);
 
           });
           /*FIN SERVICIO PARA RECUPERAR PACIENTE*/
@@ -163,28 +169,35 @@ export class RegistroComponent implements OnInit {
     this.direccion.entidadFederativa= this.entidadFederativa;
     this.direccion.alcaldiaMunicipio = this.alcaldia;
     this.paciente.direccion=this.direccion;
-    this.paciente.imagenUsuario = this.imagenUsuario;
+  
     //console.log(this.paciente.fechaAlta);
  
 
     if(this.edicion){
     //Actualizar
-    console.log("En actualizar");
-    console.log(this.paciente);
      /* Servicio que registra a un nuevo Paciente*/
      this.servicioPaciente.actualizarPaciente(this.paciente).subscribe(
       respuesta =>{
         console.log( respuesta);
+
+        this.spinner.show();
+
+        setTimeout(() => {
+          window.location.reload(); this.spinner.hide();
+        }, 1000);
 
       },
       error=>{
         console.log(<any>error);
       }
     );
+   
     /*FIN*/
     }else{
     //Crear
+    this.paciente.imagenUsuario = this.imagenUsuario;
     console.log(this.paciente);
+    
   
      /* Servicio que registra a un nuevo Paciente*/
      this.servicioPaciente.registrarPaciente(this.paciente).subscribe(
@@ -217,10 +230,19 @@ export class RegistroComponent implements OnInit {
       
     me.base64File = btoa(reader.result as string);
 
-    me.imagenUsuario = new ImagenUsuario(666666,me.base64File,me.imagenPacienteFormulario.name,me.imagenPacienteFormulario.type);
-    console.log(me.imagenUsuario);
-    
-      
+    if(me.edicion){
+      me.paciente.imagenUsuario.imagenByte = me.base64File;
+      me.paciente.imagenUsuario.nombre = me.imagenPacienteFormulario.name;
+      me.paciente.imagenUsuario.type = me.imagenPacienteFormulario.type; 
+    //  console.log(me.paciente.imagenUsuario);
+
+    }else{
+      me.imagenUsuario = new ImagenUsuario(666666,me.base64File,me.imagenPacienteFormulario.name,me.imagenPacienteFormulario.type);
+      //console.log(me.imagenUsuario);
+    }
+
+  
+
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
@@ -232,23 +254,29 @@ export class RegistroComponent implements OnInit {
     // console.log(this.imagenUsuario);
   
 
-    this.uploadImageData = new FormData();
-    this.uploadImageData.append('miArchivo', this.imagenPacienteFormulario, this.imagenPacienteFormulario.name);
-    //this.uploadFileToActivity();
+    //Esta metodo es la manera usada con java para mandar como un FormData la imagen
+    // this.uploadImageData = new FormData();
+    // this.uploadImageData.append('miArchivo', this.imagenPacienteFormulario, this.imagenPacienteFormulario.name);
+        //this.uploadFileToActivity();
+
+
+
    // this.imagenUsuario =this.uploadImageData;
     //this.imagenUsuario= this.imagenPacienteFormulario;
 
     
    
-  }
+  }//FIN onUpload
 
-  uploadFileToActivity() {
-    this.servicioPaciente.postFile(this.uploadImageData).subscribe(data => {
-      alert('Success');
-    }, error => {
-      console.log(error);
-    });
-  }
+
+ // Servico para mandar al backend la imagen como FormData()
+  // uploadFileToActivity() {
+  //   this.servicioPaciente.postFile(this.uploadImageData).subscribe(data => {
+  //     alert('Success');
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 
 
   /*METODO PARA MOSTRAR EL TOAST DE PRIMENG */

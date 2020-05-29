@@ -1,4 +1,7 @@
-
+<nb-card-body class="card-body">
+    <ngx-spinner type="square-jelly-box" size="medium"></ngx-spinner>
+  </nb-card-body>
+  
 <form #registroPaciente="ngForm" (ngSubmit)="onSubmit();" class="m-5">
 
 
@@ -183,18 +186,18 @@
     
     <div *ngIf="base64" class="col-md-3">
     <!-- <img [src]="'data:image/jpg;base64,'+base64" style="height:150%;width:100%"/> -->
-       <img [src]="base64" style="height:auto;width:100%"/>
+       <img [src]="base64" style="height:100%;width:100%"/>
     </div>   <!--FIN Col-3-->
 
     <div *ngIf="!base64" class="col-md-3">
         <!-- <img [src]="'data:image/jpg;base64,'+base64" style="height:150%;width:100%"/> -->
-           <img [src]="'http://innovacion.uanl.mx/wp-content/uploads/2017/06/sin-perfil.jpg'" style="height:150%;width:100%"/>
+           <img [src]="'http://innovacion.uanl.mx/wp-content/uploads/2017/06/sin-perfil.jpg'" style="height:100%;width:100%"/>
         </div>   <!--FIN Col-3-->
 
     <div class="col-md-8 col-md-offset-1">
             <!-- <p-fileUpload name="imagen" [(ngModel)]="imagen"  url="http://localhost/recibirFile/recibirFile.php"
             accept="image/*" maxFileSize="1000000" chooseLabel="Elegir" uploadLabel="Subir"  showCancelButton="false"></p-fileUpload> -->
-         <p-fileUpload chooseLabel="Elegir" uploadLabel="Subir" cancelLabel="Cancelar" name="myfile[]" customUpload="true" multiple="multiple" (uploadHandler)="onUpload($event)" accept="image/*"></p-fileUpload>
+         <p-fileUpload chooseLabel="Elegir" name="myfile[]" customUpload="true" multiple="multiple" (uploadHandler)="onUpload($event)" accept="image/*" [auto]="true"></p-fileUpload>
     </div>   <!--FIN Col-9-->
 
 </div>   <!--FIN ROW-->
