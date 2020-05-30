@@ -14,6 +14,7 @@ export class Alcaldia {
   constructor(
     public id:Number,
     public etiqueta:String,
+    public idEntidad:Number
    
   ){
 

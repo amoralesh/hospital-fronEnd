@@ -115,7 +115,7 @@
         <!--Entidad Federativa-->
         <mat-form-field>
           <mat-label>Entidad Federativa</mat-label>
-            <mat-select [(value)]="paciente.direccion.entidadFederativa.id" required>
+            <mat-select [(value)]="paciente.direccion.entidadFederativa.id" (selectionChange)="obtenerAlcaldias($event.value)" required>
                 <mat-option *ngFor="let entidadF of entidadesFederativas" [value]="entidadF.id">{{entidadF.etiqueta}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -182,8 +182,6 @@
 <hr class="mt-5">
 <h2>Fotografía</h2>
 <div class="row">
-
-    
     <div *ngIf="base64" class="col-md-3">
     <!-- <img [src]="'data:image/jpg;base64,'+base64" style="height:150%;width:100%"/> -->
        <img [src]="base64" style="height:100%;width:100%"/>

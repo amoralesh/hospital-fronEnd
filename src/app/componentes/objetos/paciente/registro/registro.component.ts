@@ -13,6 +13,7 @@ import { DateAdapter } from '@angular/material/core';
 import { ImagenUsuario } from 'src/app/models/imagenUsuario/imagenusuario.module';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -37,6 +38,7 @@ export class RegistroComponent implements OnInit {
 
   public entidadesFederativas;
   public alcaldias;
+  public idEntidadFederativa;
 
   //para cambiar el idioma del datapicket a español
   es: any;
@@ -80,16 +82,13 @@ export class RegistroComponent implements OnInit {
     this.estadoCivil = new EstadoCivil(1,'Soltero/a');
    
     this.entidadFederativa= new Entidadfederativa(1,'algo');
-    this.alcaldia  = new Alcaldia (1,'algo');
+    this.alcaldia  = new Alcaldia (1,'',null);
     this.direccion = new Direccion (this.entidadFederativa,this.alcaldia,'',null,'','','');
     this.paciente  = new Paciente (60000,'','','',null,null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date(),this.imagenUsuario);
 
   }
 
 
-  ngOnChanges(changes: SimpleChanges): void {
-   console.log(changes);
-  }
   
   ngOnInit(): void {
     //ESTE SERVICIO SE REALIZA PARA CONOCER SI LA URL CONTIENE ID, PARA SABER SI SE MUESTRAN DATOS 
@@ -101,12 +100,17 @@ export class RegistroComponent implements OnInit {
          this.edicion = this.idUrlEditar!=null; 
 
       if(this.edicion){
+        this.spinner.show();
           /*Servicio que obtiene la lista de todos los pacientes */
           this.servicioPaciente.getPacientesId(this.idUrlEditar).subscribe(resultado=>{
           this.paciente= resultado;
           this.direccion= this.paciente.direccion;
+          this.alcaldias =this.obtenerAlcaldias(this.paciente.direccion.entidadFederativa.id);
           this.base64 = atob(this.paciente.imagenUsuario.imagenByte as string);
-
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 500);
+          console.log(this.paciente);
           });
           /*FIN SERVICIO PARA RECUPERAR PACIENTE*/
       }
@@ -144,17 +148,6 @@ export class RegistroComponent implements OnInit {
     );
     /*FIN ENTIDAD FEDERATIVA*/
 
-    /*Servicio Que obtiene todas las Alcaldias*/
-    this.servicioDireccion.getAlcaldias().subscribe(
-      respuesta =>{
-        this.alcaldias = respuesta;
-      },
-      error=>{
-        console.log(<any>error);
-      }
-    );
-    /*FIN ALCALDIAS*/
-
   });//FIN DE EDICION/NUEVO
 
   }//FIN NGONINIT
@@ -162,28 +155,21 @@ export class RegistroComponent implements OnInit {
 
 
   onSubmit(){
-    this.paciente.genero=this.genero;
-    this.paciente.estadoCivil=this.estadoCivil;
-   // this.paciente.fechaAlta=new Date();
-
-    this.direccion.entidadFederativa= this.entidadFederativa;
-    this.direccion.alcaldiaMunicipio = this.alcaldia;
-    this.paciente.direccion=this.direccion;
-  
-    //console.log(this.paciente.fechaAlta);
- 
-
     if(this.edicion){
     //Actualizar
      /* Servicio que registra a un nuevo Paciente*/
      this.servicioPaciente.actualizarPaciente(this.paciente).subscribe(
       respuesta =>{
-        console.log( respuesta);
-
+        this.paciente = respuesta;
+        this.base64=atob(this.paciente.imagenUsuario.imagenByte as string);
+       
         this.spinner.show();
+      
 
         setTimeout(() => {
-          window.location.reload(); this.spinner.hide();
+          this.showInfoUpdate();
+          this.router.navigate(['paciente','editar',respuesta.id]); 
+          this.spinner.hide();
         }, 1000);
 
       },
@@ -195,14 +181,17 @@ export class RegistroComponent implements OnInit {
     /*FIN*/
     }else{
     //Crear
+    this.paciente.genero=this.genero;
+    this.paciente.estadoCivil=this.estadoCivil;
     this.paciente.imagenUsuario = this.imagenUsuario;
-    console.log(this.paciente);
-    
+    this.paciente.direccion=this.direccion;
+    this.direccion.entidadFederativa= this.entidadFederativa;
+    this.direccion.alcaldiaMunicipio = this.alcaldia;
   
      /* Servicio que registra a un nuevo Paciente*/
      this.servicioPaciente.registrarPaciente(this.paciente).subscribe(
       respuesta =>{
-        console.log(  respuesta);
+
         this.showSuccess();
         setTimeout(() => {
           this.router.navigate(['paciente','editar',respuesta.id]);
@@ -217,6 +206,31 @@ export class RegistroComponent implements OnInit {
   
 
   }/*FIN DE onSubmit */
+
+  //METODO QUE OBTIENE LAS ALCALDIAS DEPENDIENDO DEL ID DE MUNICPIO
+  
+  obtenerAlcaldias(event){
+    /*Servicio Que obtiene todas las Alcaldias*/
+    this.servicioDireccion.getAlcaldias(event).subscribe(
+      respuesta =>{
+        this.alcaldias = respuesta;
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    );
+    /*FIN ALCALDIAS*/
+}
+
+    /*METODO PARA MOSTRAR EL TOAST DE PRIMENG */
+    showSuccess() {
+      this.messageService.add({severity:'success', summary: 'El Paciente: '+this.paciente.nombre+' '+this.paciente.apellidoP, detail:'Fue registrado con exito',life:5000});
+  }//
+
+      /*METODO PARA MOSTRAR EL TOAST DE PRIMENG */
+      showInfoUpdate() {
+        this.messageService.add({severity:'info', summary: 'El Paciente: '+this.paciente.nombre+' '+this.paciente.apellidoP, detail:'Fue actualizado con exito',life:5000});
+    }//
 
   onUpload(event) {
     for ( this.imagenPacienteFormulario of event.files) {
@@ -240,8 +254,6 @@ export class RegistroComponent implements OnInit {
       me.imagenUsuario = new ImagenUsuario(666666,me.base64File,me.imagenPacienteFormulario.name,me.imagenPacienteFormulario.type);
       //console.log(me.imagenUsuario);
     }
-
-  
 
     };
     reader.onerror = function (error) {
@@ -268,7 +280,6 @@ export class RegistroComponent implements OnInit {
    
   }//FIN onUpload
 
-
  // Servico para mandar al backend la imagen como FormData()
   // uploadFileToActivity() {
   //   this.servicioPaciente.postFile(this.uploadImageData).subscribe(data => {
@@ -277,13 +288,6 @@ export class RegistroComponent implements OnInit {
   //     console.log(error);
   //   });
   // }
-
-
-  /*METODO PARA MOSTRAR EL TOAST DE PRIMENG */
-  showSuccess() {
-    this.messageService.add({severity:'success', summary: 'El Paciente: '+this.paciente.nombre+' '+this.paciente.apellidoP, detail:'Fue registrado con exito',life:5000});
-}//
-
 
  //FUNCION PARA CONVERTIR UN FILE EN BASE 64
 

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Hospital</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+  <!--Estylos para PRIMENG-->
+  <link href="../node_modules/primeicons/primeicons.css" />
+  <link href="../node_modules/primeng/resources/themes/nova-light/theme.css" />
+  <link href="../node_modules/primeng/resources/primeng.min.css" />
+
+  <!-- overlayScrollbars -->
+  <link href="../src/assets/adminLTE3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+  <!-- Theme style -->
+  <link href="../src/assets/adminLTE3/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+</head>
+<body class="mat-typography" style="height:100%">
+  <app-root></app-root>
+ 
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <!-- Font Awesome JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/wheelnav@1.7.1/js/dist/raphael.min.js" ></script>
+    
+    <!-- Font Awesome JS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js" ></script>
+
+     <!-- CHART JS -->
+     <script defer src="https://cdnjs.com/libraries/Chart.js" ></script>
+
+     <!-- overlayScrollbars -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.12.0/js/jquery.overlayScrollbars.min.js"></script>
+      
+      <!-- AdminLTE App -->
+      <script src="../src/assets/adminLTE3/dist/js/adminlte.js"></script>
+
+      <!-- OPTIONAL SCRIPTS -->
+      <script src="../src/assets/adminLTE3/dist/js/demo.js"></script>
+
+
+
+
+    
+<!--Funcion para ocultar el menu de lado izquierdo-->
+   <script type="text/javascript">
+       $(document).ready(function () {
+        
+           $('#sidebarCollapse').on('click', function () {
+               $('#sidebar, #content').toggleClass('active');
+               $('.collapse.in').toggleClass('in');
+               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+           });
+       });
+   </script> 
+<!--Funcion para ocultar el menu de lado izquierdo-->
+</body>
+</html>

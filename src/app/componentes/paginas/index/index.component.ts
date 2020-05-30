@@ -35,7 +35,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
 
     this.pacienteServicio.getCountGenero().subscribe(resultado =>{
-     // console.log(resultado);
+     //console.log(resultado);
         this.cadenaGeneros=[resultado[0].split(",",2),resultado[1].split(",",2)];
         //console.log(this.cadenaGeneros[0][1]);
         this.cantidad=parseInt(this.cadenaGeneros[0][1],10);

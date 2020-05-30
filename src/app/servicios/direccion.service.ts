@@ -17,8 +17,8 @@ export class DireccionService {
     return this.http.get(this.urlMaster+'entidadesfederativas/entidadfederativa');
   }
 
-  getAlcaldias():Observable<any>{
+  getAlcaldias(idEntidadFederativa):Observable<any>{
     //let header= new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.get(this.urlMaster+'alcaldias/alcaldia');
+    return this.http.get(this.urlMaster+`alcaldias/municipio/alcaldia/${idEntidadFederativa}`);
   }
 }
