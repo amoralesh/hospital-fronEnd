@@ -1,21 +1,19 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-  
-                    <img src='https://d7lju56vlbdri.cloudfront.net/var/ezwebin_site/storage/images/_aliases/imagelarge/media/images/adobestock_120243443/6178527-1-esl-MX/AdobeStock_120243443.jpg' class='imgRedonda' />&nbsp;&nbsp;Bootstrap Sidebar
-            
+            <h3>Bootstrap Sidebar</h3>
         </div>
 
         <ul class="list-unstyled components">
-            <p><b>Menú</b></p>
-            <li >
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-users"></i>&nbsp;Pacientes</a>
+            <p>Menú</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                      <a [routerLink]="['paciente','lista']"><i class="fas fa-asterisk"></i>&nbsp;Lista de Pacientes</a>
+                        <a [routerLink]="['paciente','lista']">Lista de Pacientes</a>
                     </li>
                     <li>
-                        <a [routerLink]="['paciente','nuevo']"><i class="fas fa-asterisk"></i>&nbsp;Nuevo</a>
+                        <a [routerLink]="['paciente','nuevo']">Nuevo</a>
                     </li>
                     <li>
                         <a href="#">Home 2</a>
@@ -23,7 +21,7 @@
                 </ul>
             </li>
             <li >
-                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-md"></i>&nbsp;Doctores</a>
+                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Doctores</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu2">
                     <li>
                         <a href="#">Lista de Doctores</a>

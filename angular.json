@@ -34,11 +34,10 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/raphael/raphael.js",
-              "./node_modules/morris.js/morris.min.js",
-              "./node_modules/dist/js/adminlte.js"
+              "./node_modules/morris.js/morris.min.js"
               
             ]
           },
@@ -115,8 +114,7 @@
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/raphael/raphael.js",
-              "./node_modules/morris.js/morris.min.js",
-              "./node_modules/dist/js/adminlte.js"
+              "./node_modules/morris.js/morris.min.js"
               
             ]
           }

@@ -1,0 +1,19 @@
+.navbar{
+box-shadow:
+    1px 8px 11px rgba(0, 0, 0, 0.1);
+    background-color: rgb(253, 253, 253);
+}
+
+.box:hover {
+    color:white;
+    background-color: rgb(146, 221, 240);
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+  }
+
+
+  
