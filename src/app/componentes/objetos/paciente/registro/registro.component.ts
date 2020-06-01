@@ -10,7 +10,7 @@ import { Alcaldia } from 'src/app/models/alcaldia/alcaldia.module';
 import { DireccionService } from 'src/app/servicios/direccion.service';
 import { MessageService } from 'primeng/api';
 import { DateAdapter } from '@angular/material/core';
-import { ImagenUsuario } from 'src/app/models/imagenUsuario/imagenusuario.module';
+import { ImagenPaciente } from 'src/app/models/imagenPaciente/imagenpaciente.module';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
@@ -31,7 +31,7 @@ export class RegistroComponent implements OnInit {
   public entidadFederativa:Entidadfederativa;
   public alcaldia:Alcaldia;
   public direccion:Direccion;
-  public imagenUsuario:ImagenUsuario;
+  public imagenPaciente:ImagenPaciente;
 
   public generos;
   public estadosCiviles;
@@ -84,7 +84,7 @@ export class RegistroComponent implements OnInit {
     this.entidadFederativa= new Entidadfederativa(1,'algo');
     this.alcaldia  = new Alcaldia (1,'',null);
     this.direccion = new Direccion (this.entidadFederativa,this.alcaldia,'',null,'','','');
-    this.paciente  = new Paciente (60000,'','','',null,null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date(),this.imagenUsuario);
+    this.paciente  = new Paciente (60000,'','','',null,null,'','',null,null,this.genero,this.estadoCivil,this.direccion, new Date(),this.imagenPaciente);
 
   }
 
@@ -106,7 +106,7 @@ export class RegistroComponent implements OnInit {
           this.paciente= resultado;
           this.direccion= this.paciente.direccion;
           this.alcaldias =this.obtenerAlcaldias(this.paciente.direccion.entidadFederativa.id);
-          this.base64 = atob(this.paciente.imagenUsuario.imagenByte as string);
+          this.base64 = atob(this.paciente.imagenPaciente.imagenByte as string);
           setTimeout(() => {
             this.spinner.hide();
           }, 500);
@@ -161,7 +161,7 @@ export class RegistroComponent implements OnInit {
      this.servicioPaciente.actualizarPaciente(this.paciente).subscribe(
       respuesta =>{
         this.paciente = respuesta;
-        this.base64=atob(this.paciente.imagenUsuario.imagenByte as string);
+        this.base64=atob(this.paciente.imagenPaciente.imagenByte as string);
        
         this.spinner.show();
       
@@ -183,7 +183,7 @@ export class RegistroComponent implements OnInit {
     //Crear
     this.paciente.genero=this.genero;
     this.paciente.estadoCivil=this.estadoCivil;
-    this.paciente.imagenUsuario = this.imagenUsuario;
+    this.paciente.imagenPaciente = this.imagenPaciente;
     this.paciente.direccion=this.direccion;
     this.direccion.entidadFederativa= this.entidadFederativa;
     this.direccion.alcaldiaMunicipio = this.alcaldia;
@@ -245,13 +245,13 @@ export class RegistroComponent implements OnInit {
     me.base64File = btoa(reader.result as string);
 
     if(me.edicion){
-      me.paciente.imagenUsuario.imagenByte = me.base64File;
-      me.paciente.imagenUsuario.nombre = me.imagenPacienteFormulario.name;
-      me.paciente.imagenUsuario.type = me.imagenPacienteFormulario.type; 
-    //  console.log(me.paciente.imagenUsuario);
+      me.paciente.imagenPaciente.imagenByte = me.base64File;
+      me.paciente.imagenPaciente.nombre = me.imagenPacienteFormulario.name;
+      me.paciente.imagenPaciente.type = me.imagenPacienteFormulario.type; 
+    //  console.log(me.paciente.imagenPaciente);
 
     }else{
-      me.imagenUsuario = new ImagenUsuario(666666,me.base64File,me.imagenPacienteFormulario.name,me.imagenPacienteFormulario.type);
+      me.imagenPaciente = new ImagenPaciente(666666,me.base64File,me.imagenPacienteFormulario.name,me.imagenPacienteFormulario.type);
       //console.log(me.imagenUsuario);
     }
 

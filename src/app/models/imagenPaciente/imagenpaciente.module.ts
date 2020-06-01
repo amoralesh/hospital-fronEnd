@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class ImagenUsuario {
+export class ImagenPaciente {
 
   constructor(
     public id:Number,

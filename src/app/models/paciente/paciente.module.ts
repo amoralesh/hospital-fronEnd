@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Genero } from '../genero/genero.module';
 import { EstadoCivil } from '../estadocivil/estadocivil.module';
 import { Direccion } from '../direccion/direccion.module';
-import { ImagenUsuario } from '../imagenUsuario/imagenusuario.module';
+import { ImagenPaciente } from '../imagenPaciente/imagenpaciente.module';
 
 
 
@@ -14,7 +14,7 @@ import { ImagenUsuario } from '../imagenUsuario/imagenusuario.module';
   ]
 })
 export class Paciente {
-  constructor(
+  constructor( 
     public id:Number,
     public nombre:String,
     public apellidoP:String,
@@ -29,7 +29,7 @@ export class Paciente {
     public estadoCivil:EstadoCivil,
     public direccion:Direccion,
     public fechaAlta:Date,
-    public imagenUsuario:ImagenUsuario
+    public imagenPaciente:ImagenPaciente
    
   ){
 
