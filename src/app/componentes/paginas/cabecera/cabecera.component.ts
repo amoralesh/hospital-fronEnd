@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
   ocultar=true;
-  constructor() { }
+  constructor(public autenticacionServicio:AutenticacionService){
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,52 @@
+<nb-card-body class="card-body">
+    <ngx-spinner type="ball-fussion" size="medium"></ngx-spinner>
+  </nb-card-body>
+  
+<div class="container h-50 mt-5" *ngIf="!autenticacionServicio.estaLogueado()">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="https://www.designevo.com/res/templates/thumb_small/blue-and-white-capsule.png" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form #formularioLogin="ngForm" (ngSubmit)="onSubmit(formularioLogin);"class="m-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="usuario" id="usuario" [(ngModel)]="usuario.nombreUsuario" #nombreUsuario="ngModel" required class="form-control input_user" value="" placeholder="Nombre de usuario" required>
+                    </div>
+                    <small class="form-text text-danger" *ngIf="nombreUsuario.invalid && nombreUsuario.touched">El campo es requerio</small>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="password" id="usuario" [(ngModel)]="usuario.password" class="form-control input_pass" value="" placeholder="Contraseña" #password="ngModel" required>
+                    </div>
+                    <small class="form-text text-danger" *ngIf="password.invalid && password.touched">El campo es requerio</small>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Recuerdame </label>
+                        </div>
+                    </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                 <button type="submit" name="button" class="btn login_btn">Iniciar Sesión</button>
+               </div>
+                </form>
+            </div>
+    
+            <div>
+                <div class="d-flex justify-content-center links">
+                    <a href="#">Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <p-toast [showTransformOptions]="'translateX(-100%)'"></p-toast>
+</div>

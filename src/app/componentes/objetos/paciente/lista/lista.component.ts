@@ -8,8 +8,6 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from'sweetalert2';
 
-
-
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',

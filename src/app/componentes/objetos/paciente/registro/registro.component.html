@@ -2,7 +2,7 @@
     <ngx-spinner type="square-jelly-box" size="medium"></ngx-spinner>
   </nb-card-body>
   
-<form #registroPaciente="ngForm" (ngSubmit)="onSubmit();" class="m-5">
+<form #formularioPaciente="ngForm" (ngSubmit)="onSubmit(formularioPaciente);" id="formularioPaciente" class="m-5">
 
 
     <hr class="mt-5">
@@ -14,12 +14,14 @@
             <div class="form-group">
                 <label for="nombre"><span>*</span> Nombre(s): </label>
                 <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="paciente.nombre" #nombre="ngModel" required>
+                <small class="form-text text-danger" *ngIf="nombre.invalid && nombre.touched">El campo es requerido</small>
             </div><!--FIN Nombre-->
 
             <!--Apellido Paterno-->
             <div class="form-group">
                 <label for="apellidoP"><span>*</span> Apellido Paterno:</label>
                 <input type="text" name="apellidoP" class="form-control" id="apellidoP" [(ngModel)]="paciente.apellidoP" #apellidoP="ngModel" required>
+                <small class="form-text text-danger" *ngIf="apellidoP.invalid && apellidoP.touched">El campo es requerido</small>
             </div>
             <!--FIN Apellido Paterno-->
 
@@ -32,7 +34,7 @@
 
             <mat-form-field>
                 <mat-label>Elija una Fecha</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="paciente.fechaNacimiento"  name="picker2">
+                <input matInput [matDatepicker]="picker" #fecha="ngModel" [(ngModel)]="paciente.fechaNacimiento"  name="picker2" required>
                 <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
                 <mat-datepicker #picker ></mat-datepicker> 
             </mat-form-field>
@@ -47,6 +49,7 @@
               <div class="form-group">
                 <label for="edad"><span>*</span> Edad:</label>
                 <input type="text" name="edad" class="form-control" id="edad" [(ngModel)]="paciente.edad" #edad="ngModel" required>
+                <small class="form-text text-danger" *ngIf="edad.invalid && edad.touched">El campo es requerido</small>
             </div>
             <!--FIN Edad-->
 
@@ -63,7 +66,8 @@
             <!--CURP-->
             <div class="form-group mt-4">
                 <label for="curp"><span>*</span>Curp:</label>
-                <input type="text" name="curp" class="form-control" id="curp" [(ngModel)]="paciente.curp" #curp="ngModel" required required minlength="18" maxlength="21">
+                <input type="text" name="curp" class="form-control" id="curp" [(ngModel)]="paciente.curp" #curp="ngModel" required minlength="18" maxlength="21">
+                <small class="form-text text-danger" *ngIf="curp.invalid && curp.touched">El campo requiere de 18 a 21 caracteres</small>
             </div>
             <!--FIN CURP-->
 
@@ -84,14 +88,16 @@
             <!--Teléfono Celular-->
             <div class="form-group">
                 <label for="telefonoCelular"><span>*</span>Teléfono Celular:</label>
-                <input type="text" name="telefonoCelular" class="form-control" id="telefonoCelular" [(ngModel)]="paciente.telefonoCelular" #curp="ngModel" required required minlength="18" maxlength="21">
+                <input type="text" name="telefonoCelular" class="form-control" id="telefonoCelular" [(ngModel)]="paciente.telefonoCelular" #telefonoCelular="ngModel" required minlength="10" maxlength="12">
+                <small class="form-text text-danger" *ngIf="telefonoCelular.invalid && telefonoCelular.touched">El campo requiere de 10 a 12 digitos</small>
             </div>
             <!--FIN Teléfono telefonoCelular-->
 
              <!--Teléfono-->
              <div class="form-group">
                 <label for="telefono"><span>*</span>Teléfono:</label>
-                <input type="text" name="telefono" class="form-control" id="telefono" [(ngModel)]="paciente.telefono" #curp="ngModel" required required minlength="18" maxlength="21">
+                <input type="text" name="telefono" class="form-control" id="telefono" [(ngModel)]="paciente.telefono" #telefono="ngModel"  required minlength="8" maxlength="10">
+                <small class="form-text text-danger" *ngIf="telefono.invalid && telefono.touched">El campo requiere de 8 a 10 digitos</small>
             </div>
             <!--FIN Teléfono-->
 
@@ -99,6 +105,7 @@
              <div class="form-group">
                 <label for="correo"><span>*</span>Correo Electrónico:</label>
                 <input type="email" name="correo" class="form-control" id="correo" [(ngModel)]="paciente.correo" #correo="ngModel" required>
+                <small class="form-text text-danger" *ngIf="correo.invalid && correo.touched">El campo es requerido</small>
             </div>
             <!--FIN Correo Electrónico-->
 
@@ -134,6 +141,7 @@
         <div class="form-group">
             <label for="colonia"><span>*</span>Colonia: </label>
             <input type="text" name="colonia" class="form-control" id="colonia" [(ngModel)]="direccion.colonia" #colonia="ngModel" required>
+            <small class="form-text text-danger" *ngIf="colonia.invalid && colonia.touched">El campo es requerido</small>
         </div>
         <!--FIN Colonia-->
 
@@ -144,7 +152,8 @@
         <!--Codigo Postal-->
         <div class="form-group">
             <label for="codigoPostal"><span>*</span>Código Postal: </label>
-            <input type="text" name="codigoPostal" class="form-control" id="codigoPostal" [(ngModel)]="direccion.codigoPostal" #codigoPostal="ngModel" required>
+            <input type="text" name="codigoPostal" class="form-control" id="codigoPostal" [(ngModel)]="direccion.codigoPostal" #codigoPostal="ngModel" required minlength="5" maxlength="5">
+            <small class="form-text text-danger" *ngIf="codigoPostal.invalid && codigoPostal.touched">El campo requiere 5 digitos</small>
         </div>
         <!--FIN Codigo Postal-->
 

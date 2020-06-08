@@ -40,6 +40,8 @@ export class IndexComponent implements OnInit {
         //console.log(this.cadenaGeneros[0][1]);
         this.cantidad=parseInt(this.cadenaGeneros[0][1],10);
         console.log( this.cadenaGeneros);
+
+        
         this.funcionAuxiliar();
       });/*FIN DE SERVICIO */
 
@@ -64,7 +66,7 @@ public funcionAuxiliar(){
     }
   };
 
-   this.pieChartLabels= [this.cadenaGeneros[0][0], this.cadenaGeneros[1][0], 'Otros'];
+  this.pieChartLabels= [this.cadenaGeneros[0][0], this.cadenaGeneros[1][0], 'Otros'];
   this.pieChartData = [ this.cadenaGeneros[0][1], this.cadenaGeneros[1][1], 2];
   this.pieChartType= 'pie';
   this.pieChartLegend = true;

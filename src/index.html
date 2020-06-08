@@ -32,13 +32,18 @@
  
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
      <!-- jQuery Custom Scroller CDN -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- Bootstrap JS -->
+
+   <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.js" integrity="sha256-+BEKmIvQ6IsL8sHcvidtDrNOdZO3C9LtFPtF2H0dOHI=" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/localization/messages_ar.min.js" integrity="sha256-mucdgS0vQnhcuI+w9IN5Ag0Gj3BEWj10vwWaWBu3aao=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha256-+BEKmIvQ6IsL8sHcvidtDrNOdZO3C9LtFPtF2H0dOHI=" crossorigin="anonymous"></script>
+    -->
+   <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -51,21 +56,33 @@
      <!-- CHART JS -->
      <script defer src="https://cdnjs.com/libraries/Chart.js" ></script>
 
+<!--   
+    <script>
+       $(document).ready(function(){
 
-    
-    
+$('#formularioPaciente').validate({
+    rules:{ 
+
+      nombre: { required:true,maxlength:200},  
+      curp: {required: true,minlength: 18,maxlength: 19},
+ 
+    },
+
+    messages:{
+
+      nombre: { required: jQuery.validator.format('<div style="color:red">El campo es requerido </div>'),maxlength: jQuery.validator.format('<div style="color:red">El máximo permitido son 200 caracteres</div>') },
+      curp: { required: jQuery.validator.format('<div style="color:red">El campo es requerido </div>'),  minlength: jQuery.validator.format('<div style="color:red">El mínimo permitido son 18 caracteres</div>'), maxlength: jQuery.validator.format('<div style="color:red">El máximo permitido son 19 caracteres</div>') },
+ 
+
+    },
 
 
-
-   
-
-
-
-
-
-
-
-    
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+    </script> -->
 <!--Funcion para ocultar el menu de lado izquierdo-->
    <script type="text/javascript">
        $(document).ready(function () {

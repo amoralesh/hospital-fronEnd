@@ -5209,3 +5209,15 @@ INSERT INTO Alcaldia_Municipio (id_entidad ,etiqueta) VALUES  (32,'Villanueva');
 INSERT INTO Alcaldia_Municipio (id_entidad ,etiqueta) VALUES  (32,'Zacatecas');
 INSERT INTO Alcaldia_Municipio (id_entidad ,etiqueta) VALUES  (32,'Trancoso');
 INSERT INTO Alcaldia_Municipio (id_entidad ,etiqueta) VALUES  (32,'Santa María de la Paz');
+
+
+INSERT INTO Usuario (nombre,password) VALUES ('amoralesh','$2a$10$e59rGaFvpijWXLh03j0aZOzBYQNrIRIjlB8sGwLvBL35fecblsW1m');
+
+INSERT INTO Permisos (nombre,descripcion) VALUES ('/inicio','Administrador');
+INSERT INTO Permisos (nombre,descripcion) VALUES ('/paciente/lista','Administrador 2');
+INSERT INTO Permisos (nombre,descripcion) VALUES ('/paciente/nuevo','Administrador 3');
+INSERT INTO Permisos (nombre,descripcion) VALUES ('/paciente/editar/id','Administrador 4');
+
+INSERT INTO Usuarios_Permisos () VALUES (1,1);
+INSERT INTO Usuarios_Permisos () VALUES (1,2);
+INSERT INTO Usuarios_Permisos () VALUES (1,3);

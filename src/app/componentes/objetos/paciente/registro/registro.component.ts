@@ -12,6 +12,8 @@ import { MessageService } from 'primeng/api';
 import { DateAdapter } from '@angular/material/core';
 import { ImagenPaciente } from 'src/app/models/imagenPaciente/imagenpaciente.module';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgForm } from '@angular/forms';
+
 
 
 @Component({
@@ -154,7 +156,7 @@ export class RegistroComponent implements OnInit {
 
 
 
-  onSubmit(){
+  onSubmit(formularioPaciente:NgForm){
     if(this.edicion){
     //Actualizar
      /* Servicio que registra a un nuevo Paciente*/
@@ -180,7 +182,14 @@ export class RegistroComponent implements OnInit {
    
     /*FIN*/
     }else{
-    //Crear
+    //nuevo
+    if (formularioPaciente.invalid){
+      Object.values(formularioPaciente.controls).forEach(control => {
+control.markAsTouched();
+      });
+
+      return ;
+    }else{
     this.paciente.genero=this.genero;
     this.paciente.estadoCivil=this.estadoCivil;
     this.paciente.imagenPaciente = this.imagenPaciente;
@@ -202,6 +211,8 @@ export class RegistroComponent implements OnInit {
       }
     );
     /*FIN*/
+
+  }
     }
   
 
